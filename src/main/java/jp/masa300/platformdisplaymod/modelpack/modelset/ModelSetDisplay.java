@@ -22,6 +22,6 @@ public class ModelSetDisplay extends ModelSetBase<DisplayConfig> {
 
     @Override
     public DisplayConfig getDummyConfig() {
-        return DisplayConfig .getDummy();
+        return DisplayConfig.getDummy();
     }
 }

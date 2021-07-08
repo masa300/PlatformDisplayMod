@@ -5,13 +5,9 @@ import jp.ngt.rtm.modelpack.cfg.ModelConfig;
 public class DisplayConfig extends ModelConfig {
     public static final String TYPE = "ModelDisplay";
 
-    /**
-     * 名前(重複不可)
-     */
+    /**名前(重複不可)*/
     private String name;
-    /**
-     * モデル
-     */
+    /**モデル*/
     public ModelSource model;
 
     public String sound_OnActivate;

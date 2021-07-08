@@ -1,0 +1,11 @@
+{
+    "name": "PlatformDisplay01",
+    "model": {
+        "modelFile": "ModelDisplay_PlatformDisplay1.mqo",
+        "textures": [["default", "textures/PlatformDisplay/PlatformDisplay1.png", ""]]
+    },
+    "buttonTexture": "textures/PlatformDisplay/button_PlatformDisplay1.png",
+    "smoothing": true,
+    "doCulling": false
+
+}
