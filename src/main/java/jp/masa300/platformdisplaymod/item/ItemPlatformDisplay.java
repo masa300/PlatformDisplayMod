@@ -39,7 +39,7 @@ public class ItemPlatformDisplay extends ItemWithModel {
 
             if (!world.isAirBlock(x, y, z)) return true;
 
-            world.setBlock(x, y, z, PlatformDisplayBlock.blockPlatformDisplay, side, 3);
+            world.setBlock(x, y, z, PlatformDisplayBlock.blockPlatformDisplay, 0, 3);
             TileEntityPlatformDisplay tile = (TileEntityPlatformDisplay) world.getTileEntity(x, y, z);
             tile.setRotation(player, 15.0F, true);
             tile.setModelName(this.getModelName(itemStack));
