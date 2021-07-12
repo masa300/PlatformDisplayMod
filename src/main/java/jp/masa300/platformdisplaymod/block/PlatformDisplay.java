@@ -1,14 +1,16 @@
 package jp.masa300.platformdisplaymod.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import jp.masa300.platformdisplaymod.PlatformDisplayBlock;
 import jp.masa300.platformdisplaymod.PlatformDisplayItem;
 import jp.masa300.platformdisplaymod.block.tileentity.TileEntityPlatformDisplay;
-import jp.masa300.platformdisplaymod.item.ItemPlatformDisplay;
-import jp.ngt.rtm.item.ItemInstalledObject;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class PlatformDisplay extends BlockContainer {
@@ -29,8 +31,14 @@ public class PlatformDisplay extends BlockContainer {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+        return true;
+    }
+
+    @Override
     public int getRenderType() {
-        return -1;
+        return PlatformDisplayBlock.renderIdPlatformDisplay;
     }
 
     @Override

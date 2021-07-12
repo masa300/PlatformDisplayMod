@@ -1,6 +1,10 @@
 package jp.masa300.platformdisplaymod.modelpack.modelset;
 
 import jp.masa300.platformdisplaymod.modelpack.cfg.DisplayConfig;
+import jp.ngt.ngtlib.renderer.model.Material;
+import jp.ngt.ngtlib.renderer.model.ModelLoader;
+import jp.ngt.ngtlib.renderer.model.TextureSet;
+import jp.ngt.ngtlib.renderer.model.VecAccuracy;
 import jp.ngt.rtm.gui.GuiButtonSelectModel;
 import jp.ngt.rtm.gui.GuiSelectModel;
 import jp.ngt.rtm.modelpack.ModelPackManager;
@@ -16,8 +20,10 @@ public class ModelSetDisplayClient extends ModelSetDisplay implements IModelSetC
 
     public ModelSetDisplayClient() {
         super();
-        this.modelObj = null;
-        this.buttonTexture = null;
+        this.modelObj = new ModelObject(ModelLoader.loadModel(new ResourceLocation("models/ModelDisplay_PlatformDisplay1.mqo"), VecAccuracy.LOW),
+                new TextureSet[]{new TextureSet(new Material((byte) 0, ModelPackManager.INSTANCE.getResource("textures/PlatformDisplay/PlatformDisplay1.png")),
+                        1, false, "textures/PlatformDisplay/PlatformDisplay1.png")}, this);
+        this.buttonTexture = ModelPackManager.INSTANCE.getResource("textures/PlatformDisplay/button_PlatformDisplay1.png");
     }
 
     public ModelSetDisplayClient(DisplayConfig par1) {
@@ -27,8 +33,7 @@ public class ModelSetDisplayClient extends ModelSetDisplay implements IModelSetC
     }
 
     @Override
-    public void renderSelectButton(GuiButtonSelectModel par1, Minecraft par2, int par3, int par4)
-    {
+    public void renderSelectButton(GuiButtonSelectModel par1, Minecraft par2, int par3, int par4) {
         GL11.glPushMatrix();
 
         par2.getTextureManager().bindTexture(this.buttonTexture);
@@ -37,24 +42,21 @@ public class ModelSetDisplayClient extends ModelSetDisplay implements IModelSetC
         int k = par1.getHoverState(b0);
         par1.drawTexturedModalRect(par1.xPosition, par1.yPosition, 0, 0, 160, 32);
 
-        if(k == 2)
-        {
+        if (k == 2) {
             par2.getTextureManager().bindTexture(GuiSelectModel.ButtonBlue);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
             GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA , GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             par1.drawTexturedModalRect(par1.xPosition, par1.yPosition, 0, 0, 160, 32);
             GL11.glDisable(GL11.GL_BLEND);
 
             GL11.glTranslatef(par1.xPosition + 240, par1.yPosition + 16, 0.0F);
             GuiSelectModel.renderModel(this, par2);
-        }
-        else if(par1.isSelected)
-        {
+        } else if (par1.isSelected) {
             par2.getTextureManager().bindTexture(GuiSelectModel.ButtonBlue);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
             GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA , GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             par1.drawTexturedModalRect(par1.xPosition, par1.yPosition, 0, 32, 160, 32);
             GL11.glDisable(GL11.GL_BLEND);
         }
@@ -63,8 +65,7 @@ public class ModelSetDisplayClient extends ModelSetDisplay implements IModelSetC
     }
 
     @Override
-    public void renderModelInGui(Minecraft par1)
-    {
+    public void renderModelInGui(Minecraft par1) {
         GL11.glTranslatef(3.0F, -1.0F, -10.0F);//X:右が+, Z:手前が+
         GL11.glRotatef(-60.0F, 0.0F, 1.0F, 0.0F);
 
