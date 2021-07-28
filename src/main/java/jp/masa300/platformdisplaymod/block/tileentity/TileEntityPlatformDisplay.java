@@ -10,6 +10,7 @@ import jp.ngt.rtm.modelpack.state.ResourceState;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.util.Vec3;
 
 public class TileEntityPlatformDisplay extends TileEntityPlaceable implements IModelSelector {
@@ -37,13 +38,15 @@ public class TileEntityPlatformDisplay extends TileEntityPlaceable implements IM
         this.pitch = nbt.getFloat("Pitch");
 
         this.yawFixed = nbt.hasKey("Yaw");
+        this.getResourceState().readFromNBT(nbt.getCompoundTag("State"));
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-        nbt.setString("modelName", this.modelName);
+        nbt.setString("ModelName", this.modelName);
         nbt.setFloat("Pitch", this.pitch);
+        nbt.setTag("State", this.getResourceState().writeToNBT());
     }
 
     private void sendPacket() {
