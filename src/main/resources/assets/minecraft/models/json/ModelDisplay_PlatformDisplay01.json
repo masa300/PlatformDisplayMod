@@ -5,6 +5,7 @@
         "textures": [["default", "textures/PlatformDisplay/PlatformDisplay1.png", ""]]
     },
     "buttonTexture": "textures/PlatformDisplay/button_PlatformDisplay1.png",
+    "rotateByMetadata": true,
     "smoothing": true,
     "doCulling": false
 
