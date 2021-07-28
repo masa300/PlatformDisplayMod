@@ -51,6 +51,12 @@ public class TileEntityPlatformDisplay extends TileEntityPlaceable implements IM
     }
 
     @Override
+    public Packet getDescriptionPacket() {
+        this.sendPacket();
+        return null;
+    }
+
+    @Override
     public ResourceState getResourceState() {
         return this.state;
     }
