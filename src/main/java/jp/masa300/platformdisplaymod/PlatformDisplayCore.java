@@ -8,6 +8,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import jp.masa300.platformdisplaymod.block.tileentity.TileEntityPlatformDisplay;
+import jp.masa300.platformdisplaymod.gui.PlatfromDisplayGUIHandler;
 
 @Mod(modid = PlatformDisplayCore.MODID, version = PlatformDisplayCore.VERSION, name = PlatformDisplayCore.MODID)
 public class PlatformDisplayCore {
@@ -17,6 +18,8 @@ public class PlatformDisplayCore {
     @Mod.Instance(MODID)
     public static PlatformDisplayCore INSTANCE;
 
+    public static final int guiId_platformDisplay = 0;
+
     @SidedProxy(clientSide = "jp.masa300.platformdisplaymod.ClientProxy", serverSide = "jp.masa300.platformdisplaymod.CommonProxy")
     public static CommonProxy proxy;
 
@@ -24,6 +27,7 @@ public class PlatformDisplayCore {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new PlatfromDisplayGUIHandler());
 //        NETWORK_WRAPPER.registerMessage(PacketSignalController.class, PacketSignalController.class, 0, Side.SERVER);
         GameRegistry.registerTileEntity(TileEntityPlatformDisplay.class, "TE_PlatformDisplay");
     }
